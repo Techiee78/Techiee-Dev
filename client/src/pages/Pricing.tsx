@@ -175,8 +175,11 @@ export default function Pricing() {
       setLoadingPlan(plan.name);
       setPaymentStatus(null);
 
+      // Get API URL from env or default to localhost:5000
+      const API_BASE_URL = (import.meta as any).env.VITE_API_URL || "http://localhost:5000";
+
       // 1. Create order on server
-      const response = await fetch("/api/payment/order", {
+      const response = await fetch(`${API_BASE_URL}/create-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: plan.numericPrice }),
@@ -203,7 +206,7 @@ export default function Pricing() {
         handler: async (response: any) => {
           try {
             // 3. Verify payment on server
-            const verifyRes = await fetch("/api/payment/verify", {
+            const verifyRes = await fetch(`${API_BASE_URL}/verify-payment`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -220,7 +223,8 @@ export default function Pricing() {
                 id: response.razorpay_payment_id
               });
             } else {
-              throw new Error("Payment verification failed");
+              const errorData = await verifyRes.json();
+              throw new Error(errorData.error || "Payment verification failed");
             }
           } catch (err: any) {
             setPaymentStatus({
