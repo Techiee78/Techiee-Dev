@@ -150,10 +150,10 @@ export default function Projects() {
       repoUrl: "#"
     },
     {
-      title: "Zakiee.com",
+      title: "Novique.com",
       category: "E-Commerce",
       desc: "Luxury fashion marketplace with seamless Stripe integration and dynamic inventory management.",
-      fullDesc: "Zakiee.com is a premium e-commerce experience focused on high-end fashion. It includes a custom-built cart system, multi-currency support, and a robust admin panel for inventory tracking. The frontend is optimized for Core Web Vitals, ensuring a smooth shopping experience on all devices.",
+      fullDesc: "Novique.com is a premium e-commerce experience focused on high-end fashion. It includes a custom-built cart system, multi-currency support, and a robust admin panel for inventory tracking. The frontend is optimized for Core Web Vitals, ensuring a smooth shopping experience on all devices.",
       tags: ["React", "Node.js", "Stripe", "PostgreSQL"],
       img: "https://picsum.photos/seed/vogue/800/600",
       liveUrl: "#",
